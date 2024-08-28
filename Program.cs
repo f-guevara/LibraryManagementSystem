@@ -29,9 +29,13 @@ namespace LibraryManagementSystem
                         Business.DeleteBook(books);
                         break;
                     case 3:
+                        Business.UpdateBook(books);
+                        break;
+
+                    case 4:
                         ConsoleUI.DisplayBooks(books);
                         break;
-                    case 4:
+                    case 5:
                         Console.WriteLine("Exiting program.");
                         return;
                     default:

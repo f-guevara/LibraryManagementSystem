@@ -12,11 +12,12 @@ namespace LibraryManagementSystem
             Console.WriteLine("\nMain Menu:");
             Console.WriteLine("1. Add a Book");
             Console.WriteLine("2. Delete a Book");
-            Console.WriteLine("3. Display All Books");
-            Console.WriteLine("4. Quit");
+            Console.WriteLine("3. Update a Book");
+            Console.WriteLine("4. Display All Books");
+            Console.WriteLine("5. Quit");
             Console.Write("Choose an option: ");
 
-            if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= 4)
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= 5)
             {
                 return choice;
             }
@@ -49,7 +50,7 @@ namespace LibraryManagementSystem
             return Console.ReadLine();
         }
 
-        public static int GetBookIndex(List<Book> books)
+        public static int GetBookIndexToDelete(List<Book> books)
         {
             Console.Write("Enter the number of the book to delete: ");
             if (int.TryParse(Console.ReadLine(), out int index) && index >= 1 && index <= books.Count)
@@ -59,7 +60,20 @@ namespace LibraryManagementSystem
             else
             {
                 Console.WriteLine("Invalid input. Please enter a valid book number.");
-                return GetBookIndex(books);
+                return GetBookIndexToDelete(books);
+            }
+        }
+        public static int GetBookIndexToUpdate(List<Book> books)
+        {
+            Console.Write("Enter the number of the book to update: ");
+            if (int.TryParse(Console.ReadLine(), out int index) && index >= 1 && index <= books.Count)
+            {
+                return index - 1; // Adjust for 0-based index
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid book number.");
+                return GetBookIndexToUpdate(books);
             }
         }
     }

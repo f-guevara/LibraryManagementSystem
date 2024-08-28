@@ -30,10 +30,47 @@ namespace LibraryManagementSystem
                 return;
             }
 
-            int index = ConsoleUI.GetBookIndex(books);
+            int index = ConsoleUI.GetBookIndexToDelete(books);
             books.RemoveAt(index);
             Console.WriteLine("Book deleted successfully!");
         }
+
+        public static void UpdateBook(List<Book> books)
+        {
+            ConsoleUI.DisplayBooks(books);
+
+            if (books.Count == 0)
+            {
+                Console.WriteLine("No books to update.");
+                return;
+            }
+
+            int index = ConsoleUI.GetBookIndexToUpdate(books);
+
+            Console.Write("Enter the new title (leave empty to keep the current one): ");
+            string title = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                books[index].Title = title;
+            }
+
+            Console.Write("Enter the new author (leave empty to keep the current one): ");
+            string author = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(author))
+            {
+                books[index].Author = author;
+            }
+
+            Console.Write("Enter the new year (leave empty to keep the current one): ");
+            string yearInput = Console.ReadLine();
+            if (int.TryParse(yearInput, out int year))
+            {
+                books[index].Year = year;
+            }
+
+            Console.WriteLine("Book updated successfully!");
+        }
+
     }
 }
 
