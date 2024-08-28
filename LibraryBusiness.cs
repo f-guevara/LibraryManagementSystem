@@ -71,6 +71,29 @@ namespace LibraryManagementSystem
             Console.WriteLine("Book updated successfully!");
         }
 
+        public static List<Book> SearchBooks(List<Book> books, string searchTerm)
+        {
+            return books.Where(b => b.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                                    b.Author.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                        .ToList();
+        }
+        public static List<Book> SortBooksByTitle(List<Book> books)
+        {
+            return books.OrderBy(b => b.Title).ToList();
+        }
+
+        public static List<Book> SortBooksByAuthor(List<Book> books)
+        {
+            return books.OrderBy(b => b.Author).ToList();
+        }
+
+        public static List<Book> SortBooksByYear(List<Book> books)
+        {
+            return books.OrderBy(b => b.Year).ToList();
+        }
+
+
+
     }
 }
 

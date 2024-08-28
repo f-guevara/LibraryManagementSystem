@@ -14,19 +14,22 @@ namespace LibraryManagementSystem
             Console.WriteLine("2. Delete a Book");
             Console.WriteLine("3. Update a Book");
             Console.WriteLine("4. Display All Books");
-            Console.WriteLine("5. Quit");
+            Console.WriteLine("5. Search for a Book");
+            Console.WriteLine("6. Sort Books");
+            Console.WriteLine("7. Quit");
             Console.Write("Choose an option: ");
 
-            if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= 5)
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= 7)
             {
                 return choice;
             }
             else
             {
-                Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
+                Console.WriteLine("Invalid input. Please enter a number between 1 and 7.");
                 return ShowMainMenu();
             }
         }
+
 
         public static void DisplayBooks(List<Book> books)
         {
@@ -76,6 +79,67 @@ namespace LibraryManagementSystem
                 return GetBookIndexToUpdate(books);
             }
         }
+
+        public static int ShowSearchMenu()
+        {
+            Console.WriteLine("\nSearch Menu:");
+            Console.WriteLine("1. Search by Title");
+            Console.WriteLine("2. Search by Author");
+            Console.WriteLine("3. Back to Main Menu");
+            Console.Write("Choose an option: ");
+
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= 3)
+            {
+                return choice;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number between 1 and 3.");
+                return ShowSearchMenu();
+            }
+        }
+
+        public static void DisplaySearchResults(List<Book> books)
+        {
+            if (books.Count == 0)
+            {
+                Console.WriteLine("No books found.");
+                return;
+            }
+
+            foreach (var book in books)
+            {
+                Console.WriteLine($"{book.Title} by {book.Author}, Year: {book.Year}");
+            }
+        }
+
+        public static string GetSearchTerm()
+        {
+            Console.Write("Enter search term: ");
+            return Console.ReadLine();
+        }
+
+        public static int ShowSortMenu()
+        {
+            Console.WriteLine("\nSort Menu:");
+            Console.WriteLine("1. Sort by Title");
+            Console.WriteLine("2. Sort by Author");
+            Console.WriteLine("3. Sort by Year");
+            Console.WriteLine("4. Back to Main Menu");
+            Console.Write("Choose an option: ");
+
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice >= 1 && choice <= 4)
+            {
+                return choice;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number between 1 and 4.");
+                return ShowSortMenu();
+            }
+        }
+
+
     }
 }
 
